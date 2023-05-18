@@ -37,7 +37,7 @@ function requestAlbumFetch() {
     };
   
     fetch(
-      `https://api.imgur.com/3/album/${albumId}&client_id=${clientId}`,
+      'https://api.imgur.com/3/album/'+albumId + '/images' +clientId,
       requestOptions
     )
       .then((response) => response.json())
