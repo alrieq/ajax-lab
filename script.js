@@ -60,9 +60,11 @@ function requestAlbumFetch() {
       method: "GET",
       redirect: "follow",
     };
+    const headers = {'Authorization': 'Client-ID ' + clientId}; 
+
     try {
       const req = await fetch(
-        'https://api.imgur.com/3/album/'+albumId + '/images',
+        'https://api.imgur.com/3/album/'+albumId + '/images',{headers},
         requestOptions
       );
       const res = await req.json();
