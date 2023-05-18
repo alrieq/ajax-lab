@@ -37,7 +37,7 @@ function requestAlbumFetch() {
     };
   
     fetch(
-      'https://api.imgur.com/3/album/'+albumId + '/images' +clientId,
+      'https://api.imgur.com/3/album/'+albumId + '/images Authorization: Client-ID ae46f54c86c85c3' ,
       requestOptions
     )
       .then((response) => response.json())
