@@ -13,7 +13,7 @@ function requestAlbumXHR() {
             let response = JSON.parse(req.responseText);
             for (item of response.data) {
               let imgElem = document.createElement("img");
-              imgElem.src = item.urls.full;
+              imgElem.src = item.link;
       
               resultDiv.appendChild(imgElem);
             }
