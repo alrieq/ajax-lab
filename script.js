@@ -35,9 +35,9 @@ function requestAlbumFetch() {
       method: "GET",
       redirect: "follow",
     };
-  
+    const headers = {'Authorization': 'Client-ID ' + clientId}; 
     fetch(
-      'https://api.imgur.com/3/album/'+albumId + '/images Authorization: Client-ID ae46f54c86c85c3' ,
+      'https://api.imgur.com/3/album/'+albumId + '/images' ,{headers},
       requestOptions
     )
       .then((response) => response.json())
@@ -62,7 +62,7 @@ function requestAlbumFetch() {
     };
     try {
       const req = await fetch(
-        'https://api.imgur.com/3/album/'+albumId + '/images' +clientId,
+        'https://api.imgur.com/3/album/'+albumId + '/images',
         requestOptions
       );
       const res = await req.json();
