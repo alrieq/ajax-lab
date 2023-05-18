@@ -26,8 +26,13 @@
     <h1>Welcome to this image api </h1>
     <header>
         <input id="albumIdField" value="Jfni3" type="text" placeholder="Enter any imgur's album id">
-        <button onclick=requestAlbum()>View Images</button>
+        <button onclick=requestAlbumXHR()>View Images (XHR)</button>
+        <button onclick=requestAlbumFetch()>View Images (Fetch)</button>
+        <button onclick=requestAlbumAsyncAwait()>View Images (Async/Await)</button>
     </header>
+    <div id="result">
+
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
