@@ -11,7 +11,7 @@ function requestAlbumXHR() {
         if (req.readyState == 4 && req.status == 200) {
             //processAlbumRequest(req.responseText);
             let response = JSON.parse(req.responseText);
-            for (item of response.results) {
+            for (item of response.data) {
               let imgElem = document.createElement("img");
               imgElem.src = item.urls.full;
       
