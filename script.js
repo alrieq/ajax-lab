@@ -62,7 +62,7 @@ function requestAlbumFetch() {
     };
     try {
       const req = await fetch(
-        `https://api.imgur.com/3/album/${albumId}&client_id=${clientId}`,
+        'https://api.imgur.com/3/album/'+albumId + '/images' +clientId,
         requestOptions
       );
       const res = await req.json();
