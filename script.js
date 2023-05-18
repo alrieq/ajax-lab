@@ -10,11 +10,13 @@ function requestAlbumXHR() {
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             // processAlbumRequest(req.responseText);
-            var respObj = JSON.parse(response_text);
+            var respObj = JSON.parse(req.response_text);
+            for (item of respObj.data){
             let imgElem = document.createElement("img");
-            imgElem.src = respObj.data.link;
+            imgElem.src = item.link;
             //imgElem.referrerpolicy="no-referrer";
             resultDiv.appendChild(imgElem);
+            }
         }
         else if (req.readyState == 4 && req.status != 200) {
             console.log(req.status + " Error with the imgur API: ", req.responseText);
@@ -25,6 +27,56 @@ function requestAlbumXHR() {
     req.send();
 }
 
+
+function requestAlbumFetch() {
+    let albumId = document.getElementById("albumIdField").value;
+    let resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "";
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+  
+    fetch(
+      `https://api.imgur.com/3/album/${albumId}&client_id=${clientId}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        for (item of result.results) {
+          let imgElem = document.createElement("img");
+          imgElem.src = item.urls.full;
+  
+          resultDiv.appendChild(imgElem);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
+  
+  async function requestAlbumAsyncAwait() {
+    let albumId = document.getElementById("albumIdField").value;
+    let resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "";
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+    try {
+      const req = await fetch(
+        `https://api.imgur.com/3/album/${albumId}&client_id=${clientId}`,
+        requestOptions
+      );
+      const res = await req.json();
+      for (item of res.results) {
+        let imgElem = document.createElement("img");
+        imgElem.src = item.urls.full;
+  
+        resultDiv.appendChild(imgElem);
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  }
 // function processAlbumRequest(response_text) {
 //     var respObj = JSON.parse(response_text);
 //     for (item of respObj.data.slice(0, 10)){
