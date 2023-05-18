@@ -9,16 +9,15 @@ function requestAlbumXHR() {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
-            // processAlbumRequest(req.responseText);
-            var respObj = JSON.parse(req.response_text);
-            for (item of respObj.data){
-            let imgElem = document.createElement("img");
-            imgElem.src = item.link;
-            //imgElem.referrerpolicy="no-referrer";
-            resultDiv.appendChild(imgElem);
+            //processAlbumRequest(req.responseText);
+            let response = JSON.parse(req.responseText);
+            for (item of response.results) {
+              let imgElem = document.createElement("img");
+              imgElem.src = item.urls.full;
+      
+              resultDiv.appendChild(imgElem);
             }
-        }
-        else if (req.readyState == 4 && req.status != 200) {
+        }else if (req.readyState == 4 && req.status != 200) {
             console.log(req.status + " Error with the imgur API: ", req.responseText);
         }
     }
