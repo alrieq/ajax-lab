@@ -42,9 +42,9 @@ function requestAlbumFetch() {
     )
       .then((response) => response.json())
       .then((result) => {
-        for (item of result.results) {
+        for (item of result.data) {
           let imgElem = document.createElement("img");
-          imgElem.src = item.urls.full;
+          imgElem.src = item.link;
   
           resultDiv.appendChild(imgElem);
         }
@@ -66,9 +66,9 @@ function requestAlbumFetch() {
         requestOptions
       );
       const res = await req.json();
-      for (item of res.results) {
+      for (item of res.data) {
         let imgElem = document.createElement("img");
-        imgElem.src = item.urls.full;
+        imgElem.src = item.link;
   
         resultDiv.appendChild(imgElem);
       }
